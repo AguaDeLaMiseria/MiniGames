@@ -2,6 +2,7 @@ package me.patothebest.gamecore.lang.interfaces;
 
 import me.patothebest.gamecore.lang.CoreLocaleManager;
 import me.patothebest.gamecore.lang.Locale;
+import me.patothebest.gamecore.placeholder.PlaceHolderManager;
 import me.patothebest.gamecore.player.IPlayer;
 import me.patothebest.gamecore.player.PlayerManager;
 import me.patothebest.gamecore.util.NameableObject;
@@ -27,7 +28,7 @@ public interface ILang {
             return getMessage(CoreLocaleManager.DEFAULT_LOCALE);
         }
 
-        return getMessage(player1);
+        return PlaceHolderManager.replace(player, getMessage(player1));
     }
 
     default String getPath() {

@@ -5,6 +5,7 @@ import me.patothebest.gamecore.file.ParserException;
 import me.patothebest.gamecore.gui.inventory.GUIButton;
 import me.patothebest.gamecore.gui.inventory.GUIPage;
 import me.patothebest.gamecore.itemstack.ItemStackBuilder;
+import me.patothebest.gamecore.menu.actions.ConsoleCommandAction;
 import me.patothebest.gamecore.menu.actions.MessageAction;
 import me.patothebest.gamecore.placeholder.PlaceHolderManager;
 import me.patothebest.gamecore.util.Utils;
@@ -31,6 +32,7 @@ public class MenuItem {
     static {
         ACTIONS.put("command", CommandAction.class);
         ACTIONS.put("message", MessageAction.class);
+        ACTIONS.put("console", ConsoleCommandAction.class);
     }
 
     public MenuItem(Map<String, Object> map) throws ParserException {
