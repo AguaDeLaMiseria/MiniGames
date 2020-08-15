@@ -12,6 +12,7 @@ public abstract class AbstractShopItem implements ShopItem {
     private final int price;
     private final String permission;
     private final boolean permanent;
+    private final String command;
 
     public AbstractShopItem() {
         configName = "";
@@ -20,6 +21,7 @@ public abstract class AbstractShopItem implements ShopItem {
         price = 0;
         permission = "";
         permanent = true;
+        command = "";
     }
 
     @SuppressWarnings("unchecked")
@@ -30,6 +32,7 @@ public abstract class AbstractShopItem implements ShopItem {
         this.price = (int) data.getOrDefault("price", 0);
         this.permission = (String) data.getOrDefault("permission", "");
         this.permanent = (boolean) data.getOrDefault("permanent", true);
+        this.command = (String) data.get("command");
     }
 
     @Override
@@ -61,4 +64,7 @@ public abstract class AbstractShopItem implements ShopItem {
     public final boolean isPermanent() {
         return permanent;
     }
+
+    @Override
+    public final String getCommand() {return command;}
 }

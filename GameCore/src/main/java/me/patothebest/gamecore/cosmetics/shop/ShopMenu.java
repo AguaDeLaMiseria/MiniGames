@@ -10,6 +10,7 @@ import me.patothebest.gamecore.itemstack.ItemStackBuilder;
 import me.patothebest.gamecore.player.IPlayer;
 import me.patothebest.gamecore.player.PlayerManager;
 import me.patothebest.gamecore.util.Utils;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class ShopMenu<ShopItemType extends ShopItem, PlayerType extends IPlayer> extends GUIMultiPage {
@@ -100,10 +101,12 @@ public class ShopMenu<ShopItemType extends ShopItem, PlayerType extends IPlayer>
                                 CoreLang.GUI_SHOP_NOT_ENOUGH_MONEY.sendMessage(player);
                                 break;
                             }
-
                             ItemStackBuilder item2 = new ItemStackBuilder(itemStackShopItem);
                             shopFactory.createUsesShopMenu(player, item2, shopManager, shopItem);
                             refresh();
+                        } else if(clickType.name().contains("LEFT") && shopItem.getPrice() == -1 && !getPlayer().hasPermission(shopItem.getPermission())){
+                            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), shopItem.getCommand().replace("%player_name%", player.getName()));
+                            break;
                         } else if(finalAction == ShopAction.SELECT) {
                             iPlayer.selectItem(shopItem);
                             CoreLang.GUI_SHOP_YOU_SELECTED.replaceAndSend(player, shopItem.getDisplayName());
@@ -115,7 +118,6 @@ public class ShopMenu<ShopItemType extends ShopItem, PlayerType extends IPlayer>
                             CoreLang.GUI_SHOP_NOT_ENOUGH_MONEY.sendMessage(player);
                             break;
                         }
-
                         ItemStackBuilder item2 = new ItemStackBuilder(itemStackShopItem);
                         shopFactory.createUsesShopMenu(player, item2, shopManager, shopItem);
                         break;

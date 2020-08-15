@@ -19,6 +19,7 @@ import me.patothebest.gamecore.lang.CoreLang;
 import me.patothebest.gamecore.nms.NMS;
 import me.patothebest.gamecore.permission.Permission;
 import me.patothebest.gamecore.phase.AbstractPhase;
+import me.patothebest.gamecore.placeholder.PlaceHolderManager;
 import me.patothebest.gamecore.player.IPlayer;
 import me.patothebest.gamecore.player.PlayerManager;
 import me.patothebest.gamecore.util.Utils;
@@ -152,7 +153,7 @@ public class WaitingPhase<Arena extends AbstractArena & SpawneableArena> extends
             arena.getPlayers().add(player);
 
             // send the player joined message to the arena
-            arena.sendMessageToArena(locale -> CoreLang.PLAYER_JOINED.getMessage(locale).replace("%player%", player.getName()).replace("%players%", arena.getPlayers().size() + "").replace("%max_players%", arena.getMaxPlayers() + ""));
+            arena.sendMessageToArena(locale -> PlaceHolderManager.replace(player, CoreLang.PLAYER_JOINED.getMessage(locale)).replace("%player%", player.getName()).replace("%players%", arena.getPlayers().size() + "").replace("%max_players%", arena.getMaxPlayers() + ""));
 
             iPlayer.executeWhenFullyLoaded(player1 -> {
                 // call event

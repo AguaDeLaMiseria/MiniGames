@@ -22,4 +22,6 @@ public interface ShopItem extends NameableObject {
     default boolean isFree() {
         return getPrice() <= 0;
     }
+
+    String getCommand();
 }

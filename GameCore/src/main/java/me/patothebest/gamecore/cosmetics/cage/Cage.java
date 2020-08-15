@@ -48,6 +48,7 @@ public class Cage extends AbstractShopItem {
 
             innerMaterialSupplier = () -> itemStack;
         }
+
     }
 
     public ItemStack getOuterMaterial() {

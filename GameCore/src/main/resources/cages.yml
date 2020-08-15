@@ -17,6 +17,7 @@ cages:
     inner-material: STAINED_GLASS
     price: 100
     permission: ''
+    command: ''
   orange:
     name: Orange
     description: []

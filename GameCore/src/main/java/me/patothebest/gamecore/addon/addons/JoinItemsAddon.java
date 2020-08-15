@@ -6,6 +6,7 @@ import me.patothebest.gamecore.file.InventoryItem;
 import me.patothebest.gamecore.player.IPlayer;
 import me.patothebest.gamecore.player.PlayerManager;
 import me.patothebest.gamecore.addon.Addon;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -68,7 +69,9 @@ public class JoinItemsAddon extends Addon {
             return;
         }
 
-        event.getPlayer().chat("/" + inventoryItem.getCommand());
+        //event.getPlayer().chat("/" + inventoryItem.getCommand());
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), inventoryItem.getCommand().replace("%player_name%", event.getPlayer().getName()));
+
     }
 
     @EventHandler
@@ -106,7 +109,8 @@ public class JoinItemsAddon extends Addon {
             return;
         }
 
-        player.getPlayer().chat("/" + inventoryItem.getCommand());
+        //player.getPlayer().chat("/" + inventoryItem.getCommand());
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), inventoryItem.getCommand().replace("%player_name%", player.getPlayer().getName()));
         event.setCancelled(true);
     }
 
