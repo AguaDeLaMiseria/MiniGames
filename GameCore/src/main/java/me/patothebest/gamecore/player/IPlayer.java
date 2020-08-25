@@ -404,9 +404,18 @@ public interface IPlayer extends SerializableObject, ObservablePlayer {
      * @return true if the player can use the item
      */
     default <Type extends ShopItem> boolean canUse(Type shopItem) {
-        return hasEnough(shopItem, 1);
+        return hasEnough(shopItem, 1) || hasPermission(shopItem);
     }
-
+    /**
+     * Checks whether or not a player can use that item
+     *
+     * @param shopItem the shop item item
+     * @param <Type> the shop item type
+     * @return true if the player has permission to use the item
+     */
+    default <Type extends ShopItem> boolean hasPermission(Type shopItem) {
+        return getPlayer().hasPermission(shopItem.getPermission());
+    }
     /**
      * Checks whether or not the player has unlocked the item permanently
      *

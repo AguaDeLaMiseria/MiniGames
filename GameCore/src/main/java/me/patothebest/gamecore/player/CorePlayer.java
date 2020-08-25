@@ -509,7 +509,7 @@ public class CorePlayer extends ObservablePlayerImpl implements IPlayer {
 
         int amount = getRemainingUses(shopItem);
 
-        if(amount <= 0) {
+        if(amount <= 0 && !canUse(shopItem)) {
             return false;
         }
 
@@ -539,16 +539,17 @@ public class CorePlayer extends ObservablePlayerImpl implements IPlayer {
 
         int currAmount = getRemainingUses(shopItem);
 
-        if(currAmount <= 0) {
+        if(currAmount <= 0 && !canUse(shopItem)) {
             return false;
         }
 
         currAmount-= amount;
         ownedItems.get(shopItem.getClass()).remove(shopItem);
 
-        if(currAmount > 0) {
+        if(currAmount >= 0 || canUse(shopItem)) {
             ownedItems.get(shopItem.getClass()).put(shopItem, currAmount);
             notifyObservers(ShopModifier.USED_ITEM, shopItem, currAmount);
+            return true;
         } else {
             notifyObservers(ShopModifier.DEPLETED_ITEM, shopItem);
         }

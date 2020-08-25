@@ -20,7 +20,10 @@ public interface ShopItem extends NameableObject {
     boolean isPermanent();
 
     default boolean isFree() {
-        return getPrice() <= 0;
+        return getPrice() == 0;
+    }
+    default boolean isNegative() {
+        return getPrice() < 0;
     }
 
     String getCommand();

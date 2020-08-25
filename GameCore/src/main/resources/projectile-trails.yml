@@ -23,7 +23,7 @@ projectile-trails:
     interval: 2
     permission: ''
   explosion_large:
-    name: Meidum Explosion
+    name: Medium Explosion
     description: []
     effect: EXPLOSION_LARGE
     permanent: false
