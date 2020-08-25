@@ -92,9 +92,10 @@ public class ShopMenu<ShopItemType extends ShopItem, PlayerType extends IPlayer>
                 }*/
                 if (iPlayer.isSelected(shopItem)) {
                     itemStack.addLore(CoreLang.GUI_SHOP_SELECTED.getMessage(getPlayer())).glowing(true);
+                } else{
+                    itemStack.addLore(CoreLang.GUI_SHOP_LEFT_CLICK_SELECT.getMessage(getPlayer()));
+                    action = ShopAction.SELECT;
                 }
-                itemStack.addLore(CoreLang.GUI_SHOP_LEFT_CLICK_SELECT.getMessage(getPlayer()));
-                action = ShopAction.SELECT;
             } else{
                 if (iPlayer.isSelected(shopItem)) {
                     itemStack.addLore(CoreLang.GUI_SHOP_SELECTED.getMessage(getPlayer())).glowing(true);
