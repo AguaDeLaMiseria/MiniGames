@@ -62,6 +62,16 @@ public enum Lang implements ILang {
     ARENA_MUST_BE_TEAM(true, "&cArena must be team arena"),
     ARENA_NOT_ENOUGH_SPAWNS(true,"&cArena needs enough spawns! Use &e/%base_command% setup spawns"),
 
+    // -------------------------------------------- //
+    // Phases palceholders
+    // -------------------------------------------- //
+    PLACEHOLDER(CommentType.HEADER, "Phases placeholders"),
+    PLACEHOLDER_DESCRIPTIONS(CommentType.SUBHEADER_NOT_SPACED, "ScoreBoard phases placeholders"),
+    NONE_PHASE("null"),
+    REFILL_PHASE("Refill"),
+    DOOM_PHASE("Doom"),
+    BORDER_SHRINK_PHASE("Border Shrink"),
+    END_PHASE("End"),
 ;
 
     private String defaultMessage;
