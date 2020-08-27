@@ -16,6 +16,7 @@ import me.patothebest.gamecore.feature.features.chests.refill.ChestLocation;
 import me.patothebest.gamecore.feature.features.gameoptions.GameOptionsFeature;
 import me.patothebest.gamecore.feature.features.gameoptions.individual.CageSelectorGameOption;
 import me.patothebest.gamecore.feature.features.gameoptions.individual.ProjectileTrailSelectorGameOption;
+import me.patothebest.gamecore.feature.features.gameoptions.individual.VictoryEffectSelectorGameOption;
 import me.patothebest.gamecore.feature.features.gameoptions.individual.WalkTrailSelectorGameOption;
 import me.patothebest.gamecore.feature.features.gameoptions.time.TimeSelectorGameOption;
 import me.patothebest.gamecore.feature.features.gameoptions.weather.WeatherSelectorGameOption;
@@ -120,9 +121,10 @@ public class Arena extends AbstractArena implements SpawneableArena, ChestArena,
 
             GameOptionsFeature gameOptionsFeature = lobbyPhase.registerFeature(GameOptionsFeature.class);
             gameOptionsFeature.registerGameOption(lobbyPhase, CageSelectorGameOption.class, 9);
-            gameOptionsFeature.registerGameOption(lobbyPhase, TimeSelectorGameOption.class, 11);
-            gameOptionsFeature.registerGameOption(lobbyPhase, WeatherSelectorGameOption.class, 13);
-            gameOptionsFeature.registerGameOption(lobbyPhase, ProjectileTrailSelectorGameOption.class, 15);
+            gameOptionsFeature.registerGameOption(lobbyPhase, VictoryEffectSelectorGameOption.class, 10);
+            gameOptionsFeature.registerGameOption(lobbyPhase, TimeSelectorGameOption.class, 12);
+            gameOptionsFeature.registerGameOption(lobbyPhase, WeatherSelectorGameOption.class, 14);
+            gameOptionsFeature.registerGameOption(lobbyPhase, ProjectileTrailSelectorGameOption.class, 16);
             gameOptionsFeature.registerGameOption(lobbyPhase, WalkTrailSelectorGameOption.class, 17);
             gameOptionsFeature.setSlot(5);
 
@@ -133,9 +135,10 @@ public class Arena extends AbstractArena implements SpawneableArena, ChestArena,
 
         GameOptionsFeature gameOptionsFeature = (GameOptionsFeature) cagePhase.registerFeature(GameOptionsFeature.class);
         gameOptionsFeature.registerGameOption(cagePhase, CageSelectorGameOption.class, 9);
-        gameOptionsFeature.registerGameOption(cagePhase, TimeSelectorGameOption.class, 11);
-        gameOptionsFeature.registerGameOption(cagePhase, WeatherSelectorGameOption.class, 13);
-        gameOptionsFeature.registerGameOption(cagePhase, ProjectileTrailSelectorGameOption.class, 15);
+        gameOptionsFeature.registerGameOption(cagePhase, VictoryEffectSelectorGameOption.class, 10);
+        gameOptionsFeature.registerGameOption(cagePhase, TimeSelectorGameOption.class, 12);
+        gameOptionsFeature.registerGameOption(cagePhase, WeatherSelectorGameOption.class, 14);
+        gameOptionsFeature.registerGameOption(cagePhase, ProjectileTrailSelectorGameOption.class, 16);
         gameOptionsFeature.registerGameOption(cagePhase, WalkTrailSelectorGameOption.class, 17);
 
         if(arenaGroup == ArenaType.TEAM) {

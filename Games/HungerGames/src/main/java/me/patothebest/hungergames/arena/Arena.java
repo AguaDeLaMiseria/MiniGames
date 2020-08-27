@@ -14,6 +14,7 @@ import me.patothebest.gamecore.event.arena.GameEndEvent;
 import me.patothebest.gamecore.feature.features.chests.refill.ChestLocation;
 import me.patothebest.gamecore.feature.features.gameoptions.GameOptionsFeature;
 import me.patothebest.gamecore.feature.features.gameoptions.individual.ProjectileTrailSelectorGameOption;
+import me.patothebest.gamecore.feature.features.gameoptions.individual.VictoryEffectSelectorGameOption;
 import me.patothebest.gamecore.feature.features.gameoptions.individual.WalkTrailSelectorGameOption;
 import me.patothebest.gamecore.feature.features.gameoptions.time.TimeSelectorGameOption;
 import me.patothebest.gamecore.feature.features.gameoptions.weather.WeatherSelectorGameOption;
@@ -118,10 +119,11 @@ public class Arena extends AbstractArena implements ChestArena, CentrableArena, 
             lobbyPhase.setTeamItemSlot(3);
 
             GameOptionsFeature gameOptionsFeature = lobbyPhase.registerFeature(GameOptionsFeature.class);
-            gameOptionsFeature.registerGameOption(lobbyPhase, TimeSelectorGameOption.class, 10);
-            gameOptionsFeature.registerGameOption(lobbyPhase, WeatherSelectorGameOption.class, 12);
-            gameOptionsFeature.registerGameOption(lobbyPhase, WalkTrailSelectorGameOption.class, 14);
-            gameOptionsFeature.registerGameOption(lobbyPhase, ProjectileTrailSelectorGameOption.class, 16);
+            gameOptionsFeature.registerGameOption(lobbyPhase, TimeSelectorGameOption.class, 9);
+            gameOptionsFeature.registerGameOption(lobbyPhase, WeatherSelectorGameOption.class, 10);
+            gameOptionsFeature.registerGameOption(lobbyPhase, VictoryEffectSelectorGameOption.class, 13);
+            gameOptionsFeature.registerGameOption(lobbyPhase, WalkTrailSelectorGameOption.class, 16);
+            gameOptionsFeature.registerGameOption(lobbyPhase, ProjectileTrailSelectorGameOption.class, 17);
             gameOptionsFeature.setSlot(5);
 
             addPhase(TeamAssignPhase.class);
@@ -130,10 +132,11 @@ public class Arena extends AbstractArena implements ChestArena, CentrableArena, 
         WaitingPhase waitingPhase = addPhase(WaitingPhase.class);
 
         GameOptionsFeature gameOptionsFeature = (GameOptionsFeature) waitingPhase.registerFeature(GameOptionsFeature.class);
-        gameOptionsFeature.registerGameOption(waitingPhase, TimeSelectorGameOption.class, 10);
-        gameOptionsFeature.registerGameOption(waitingPhase, WeatherSelectorGameOption.class, 12);
-        gameOptionsFeature.registerGameOption(waitingPhase, WalkTrailSelectorGameOption.class, 14);
-        gameOptionsFeature.registerGameOption(waitingPhase, ProjectileTrailSelectorGameOption.class, 16);
+        gameOptionsFeature.registerGameOption(waitingPhase, TimeSelectorGameOption.class, 9);
+        gameOptionsFeature.registerGameOption(waitingPhase, WeatherSelectorGameOption.class, 10);
+        gameOptionsFeature.registerGameOption(waitingPhase, VictoryEffectSelectorGameOption.class, 13);
+        gameOptionsFeature.registerGameOption(waitingPhase, WalkTrailSelectorGameOption.class, 16);
+        gameOptionsFeature.registerGameOption(waitingPhase, ProjectileTrailSelectorGameOption.class, 17);
 
         if(arenaGroup == ArenaType.TEAM) {
             waitingPhase.setAutoStart(true);

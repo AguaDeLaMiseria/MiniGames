@@ -363,6 +363,7 @@ public enum CoreLang implements ILang {
     LOBBY_CHOOSE_TEAM("&6Choose team"),
     LOBBY_CAGE_MENU("&fChange cage"),
     LOBBY_PROJECTILE_TRAIL_MENU("&fChange projectile trail"),
+    LOBBY_VICTORY_EFFECT_MENU("&fChange victory effect"),
     LOBBY_WALK_TRAIL_MENU("&fChange walk trail"),
     LOBBY_ADMIN_MENU("&cAdmin menu"),
     LOBBY_LEAVE("&cLeave"),
