@@ -328,7 +328,15 @@ public class CorePlayer extends ObservablePlayerImpl implements IPlayer {
 
     @Override
     public boolean canUseKit(Kit kit) {
-        return kit.isEnabled() && kit.getPermissionGroup().hasPermission(this) && (kit.getCost() < 1.0 || (kitUses.containsKey(kit) && (kitUses.get(kit) > 0 || kitUses.get(kit) == -1)));
+        return kit.isEnabled() && (kit.getPermissionGroup().hasPermission(this)
+                && !kit.getPermissionGroup().getName().equalsIgnoreCase("default"))
+                || kit.getCost() == 0 || kitUses.containsKey(kit) && (kitUses.get(kit) > 0 || kitUses.get(kit) == -1);
+               /* ((kit.getCost() == 0 || (kit.getCost() == -1 && kit.getPermissionGroup().hasPermission(player) &&
+                        !kit.getPermissionGroup().getName().equalsIgnoreCase("default")) || (kitUses.containsKey(kit) &&
+                        (kitUses.get(kit) > 0 || kitUses.get(kit) == -1 || (kitUses.get(kit) == 0 &&
+                                this.getPlayer().hasPermission(kit.getPermissionGroup().getName()))))) ||
+                        (kit.getPermissionGroup().hasPermission(this) &&
+                                !kit.getPermissionGroup().getName().equalsIgnoreCase("default")));*/
     }
 
     @Override

@@ -40,7 +40,7 @@ public class KitShopUI extends GUIMultiPage {
         boolean showChooseDefault = !corePlayer.isInArena();
         enabledKits.add(0, kitManager.getDefaultKit());
         enabledKits.stream().skip(currentPage*pageSize).limit(pageSize).forEach(kit -> {
-            if (kit.getPermissionGroup().hasPermission(getPlayer())) {
+            if (kit.getPermissionGroup().hasPermission(getPlayer()) || !kit.getPermissionGroup().hasPermission(getPlayer())) {
                 addButton(new ClickTypeButton(kit.finalDisplayItem(corePlayer, true, showChooseDefault)).action((clickType) -> {
                     if ((clickType.name().contains("LEFT") && corePlayer.canUseKit(kit)) || kit.isFree() || (!kit.isOneTimeKit() && corePlayer.isPermanentKit(kit))) {
                         if (corePlayer.getKit() == kit) {
@@ -62,6 +62,9 @@ public class KitShopUI extends GUIMultiPage {
                             CoreLang.GUI_KIT_SHOP_YOU_CHOSE_KIT.replaceAndSend(player, kit.getKitName());
                         }
                     } else {
+                        if (kit.getCost() == -1){
+                            return;
+                        }
                         userGUIFactory.createBuyKitUsesUI(corePlayer, kit, showChooseDefault);
                     }
                 }), slot[0]);

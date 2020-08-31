@@ -314,30 +314,30 @@ public class Kit implements ConfigurationSerializable, GroupPermissible, Nameabl
             description.forEach(s -> itemStackBuilder.addLore(ChatColor.GRAY + s));
 
             itemStackBuilder.blankLine();
-            itemStackBuilder.addLore(CoreLang.GUI_SHOP_PRICE.replace(player, (isFree() ? CoreLang.GUI_SHOP_FREE.getMessage(player) : cost + "")));
-
-            if (permissionGroup.hasPermission(player)) {
+            if (permissionGroup.getName().equalsIgnoreCase("default") || !permissionGroup.hasPermission(player) && cost > -1) {
                 if (player.getKit() == this) {
-                    if (!isFree() && oneTimeKit) {
-                        itemStackBuilder.addLore(CoreLang.GUI_KIT_SHOP_KIT_USES.replace(player, player.getKitUses().getOrDefault(this, 0)));
-                    }
-
-                    itemStackBuilder.blankLine();
                     itemStackBuilder.glowing(true);
-
                     if (!isFree() && oneTimeKit) {
+                        itemStackBuilder.addLore(CoreLang.GUI_SHOP_PRICE.replace(player, cost + ""));
+                        itemStackBuilder.blankLine();
+                        itemStackBuilder.addLore(CoreLang.GUI_KIT_SHOP_KIT_USES.replace(player, player.getKitUses().getOrDefault(this, 0)));
+                        itemStackBuilder.blankLine();
                         itemStackBuilder.addLore(CoreLang.GUI_KIT_SHOP_RIGHT_CLICK.getMessage(player));
+                        itemStackBuilder.blankLine();
                     }
-
                     itemStackBuilder.addLore(CoreLang.GUI_SHOP_SELECTED.getMessage(player));
+
                 } else if (isFree()) {
-                    itemStackBuilder.blankLine();
+                        itemStackBuilder.addLore(CoreLang.GUI_SHOP_FREE.getMessage(player));
+                        itemStackBuilder.blankLine();
                     if(showChooseDefaultKit) {
                         itemStackBuilder.addLore(CoreLang.GUI_KIT_SHOP_CLICK_DEFAULT.getMessage(player));
                     } else {
                         itemStackBuilder.addLore(CoreLang.GUI_KIT_SHOP_CLICK_SELECT.getMessage(player));
                     }
                 } else if (oneTimeKit) {
+                    itemStackBuilder.addLore(CoreLang.GUI_SHOP_PRICE.replace(player, cost + ""));
+                    itemStackBuilder.blankLine();
                     if (player.canUseKit(this)) {
                         itemStackBuilder.addLore(CoreLang.GUI_KIT_SHOP_KIT_USES.replace(player, player.getKitUses().get(this)));
                         itemStackBuilder.blankLine();
@@ -355,8 +355,6 @@ public class Kit implements ConfigurationSerializable, GroupPermissible, Nameabl
                     }
 
                 } else {
-                    itemStackBuilder.blankLine();
-
                     if (player.canUseKit(this)) {
                         if(showChooseDefaultKit) {
                             itemStackBuilder.addLore(CoreLang.GUI_KIT_SHOP_CLICK_DEFAULT.getMessage(player));
@@ -364,10 +362,25 @@ public class Kit implements ConfigurationSerializable, GroupPermissible, Nameabl
                             itemStackBuilder.addLore(CoreLang.GUI_KIT_SHOP_CLICK_SELECT.getMessage(player));
                         }
                     } else {
+                        itemStackBuilder.addLore(CoreLang.GUI_SHOP_PRICE.replace(player, cost + ""));
+                        itemStackBuilder.blankLine();
                         itemStackBuilder.addLore(CoreLang.GUI_KIT_SHOP_CLICK_BUY_PERMANENT.replace(player));
                     }
                 }
-            } else {
+
+            } else if (permissionGroup.hasPermission(player) && !permissionGroup.getName().equalsIgnoreCase("default")){
+                if (player.getKit() == this) {
+                    itemStackBuilder.glowing(true);
+                    itemStackBuilder.addLore(CoreLang.GUI_SHOP_SELECTED.getMessage(player));
+                } else{
+                    if(showChooseDefaultKit) {
+                        itemStackBuilder.addLore(CoreLang.GUI_KIT_SHOP_CLICK_DEFAULT.getMessage(player));
+                    } else {
+                        itemStackBuilder.addLore(CoreLang.GUI_KIT_SHOP_CLICK_SELECT.getMessage(player));
+                    }
+                }
+
+            } else if (cost < 0 && !permissionGroup.hasPermission(player)){
                 itemStackBuilder.addLore(CoreLang.GUI_SHOP_NO_PERMISSION.replace(player, permissionGroup.getName()));
             }
 
@@ -406,7 +419,7 @@ public class Kit implements ConfigurationSerializable, GroupPermissible, Nameabl
     }
 
     public boolean isFree() {
-        return cost < 1;
+        return cost == 0;
     }
 
     public List<WrappedPotionEffect> getPotionEffects() {

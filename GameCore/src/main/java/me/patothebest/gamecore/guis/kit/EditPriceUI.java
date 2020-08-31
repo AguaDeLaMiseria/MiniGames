@@ -30,7 +30,7 @@ public class EditPriceUI extends GUIPage {
     @Override
     public void buildPage() {
         IncrementingButtonAction onUpdateCost = (amount) ->  {
-            kit.setCost(kit.getCost() + amount < 0 ? 0 : kit.getCost() + amount);
+            kit.setCost(kit.getCost() + amount < -1 ? -1 : kit.getCost() + amount);
             kit.save();
             refresh();
         };
