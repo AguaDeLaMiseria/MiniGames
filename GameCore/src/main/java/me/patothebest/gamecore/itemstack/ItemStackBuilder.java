@@ -326,7 +326,7 @@ public class ItemStackBuilder extends ItemStack {
      */
     public ItemStackBuilder createConfirmItem() {
         material(org.bukkit.Material.EMERALD_BLOCK);
-        name(ChatColor.GREEN + "CONFIRM");
+        name(ChatColor.GREEN + "CONFIRMAR");
         return this;
     }
 
@@ -337,7 +337,7 @@ public class ItemStackBuilder extends ItemStack {
      */
     public ItemStackBuilder createCancelItem() {
         material(org.bukkit.Material.REDSTONE_BLOCK);
-        name(ChatColor.GREEN + "CANCEL");
+        name(ChatColor.GREEN + "CANCELAR");
         return this;
     }
 

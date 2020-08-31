@@ -399,6 +399,12 @@ public enum CoreLang implements ILang {
     GUI_SHOP_NO_PERMISSION_STRING("&cYou don't have permission!"),
     GUI_SHOP_PURCHASED_USES("&aYou purchased %uses% use(s) for %item%", "uses", "item"),
 
+    // Confirm menu
+    GUI_CONFIRM_MESSAGES(CommentType.HEADER,"Confirm menu messages"),
+    GUI_SHOP_PRICE_USE_NAME("&aPrice"),
+    GUI_SHOP_PRICE_USE_LORE("will be deducted from your account"),
+
+
     // Kit Shop
     GUI_USER_KIT_SHOP(CommentType.SUBHEADER_SPACED, "Kit Shop"),
     GUI_KIT_SHOP_TITLE("Kit shop"),
