@@ -2,6 +2,7 @@ package me.patothebest.gamecore.cosmetics.projectiletrails;
 
 import fr.mrmicky.fastparticle.ParticleType;
 import org.bukkit.entity.Projectile;
+import org.bukkit.inventory.ItemStack;
 
 import java.lang.ref.WeakReference;
 
@@ -39,6 +40,9 @@ class TrackedProjectile {
 
     ParticleType getParticleType() {
         return projectileTrail.getParticleType();
+    }
+    ItemStack getParticleData(){
+        return projectileTrail.getParticleData();
     }
 
     int getDurationInMillis() {

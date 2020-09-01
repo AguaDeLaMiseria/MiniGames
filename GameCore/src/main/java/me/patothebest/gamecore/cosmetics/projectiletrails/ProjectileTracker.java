@@ -8,8 +8,11 @@ import me.patothebest.gamecore.CorePlugin;
 import me.patothebest.gamecore.modules.ActivableModule;
 import me.patothebest.gamecore.util.CacheCollection;
 import me.patothebest.gamecore.util.WrappedBukkitRunnable;
+import org.bukkit.Color;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Projectile;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.Collection;
 import java.util.concurrent.TimeUnit;
@@ -43,7 +46,13 @@ public class ProjectileTracker extends WrappedBukkitRunnable implements Activabl
             }
 
             Location location = trackedProjectile.getProjectile().getLocation();
-            FastParticle.spawnParticle(location.getWorld(), trackedProjectile.getParticleType(), location, 1, 0, 0, 0, 0);
+            if (trackedProjectile.getParticleType().getName().equalsIgnoreCase("item")){
+                FastParticle.spawnParticle(location.getWorld(), trackedProjectile.getParticleType(), location, 1, 0, 0, 0, 0, trackedProjectile.getParticleData());
+            }
+            else{
+                FastParticle.spawnParticle(location.getWorld(), trackedProjectile.getParticleType(), location, 1, 0, 0, 0, 0);
+
+            }
         }
     }
 

@@ -11,6 +11,7 @@ import java.util.Map;
 public class ProjectileTrail extends AbstractShopItem {
 
     private final ParticleType particleType;
+    private final ItemStack getParticleData;
     private final ItemStack displayItem;
     private final int durationInMillis;
     private final int interval;
@@ -21,7 +22,7 @@ public class ProjectileTrail extends AbstractShopItem {
         this.displayItem = Utils.itemStackFromString((String) data.get("display-item"));
         this.durationInMillis = ((int) data.getOrDefault("duration", 300))*1000;
         this.interval = (int) data.getOrDefault("interval", 2);
-
+        this.getParticleData = Utils.itemStackFromString((String) data.get("data"));
         ParserValidations.isTrue(particleType.isSupported(), "The particle effect " + particleType.getName() + " is not supported on this version.");
     }
 
@@ -32,6 +33,10 @@ public class ProjectileTrail extends AbstractShopItem {
 
     public ParticleType getParticleType() {
         return particleType;
+    }
+
+    public ItemStack getParticleData() {
+        return getParticleData;
     }
 
     public int getDurationInMillis() {
