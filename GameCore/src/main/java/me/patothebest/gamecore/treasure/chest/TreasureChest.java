@@ -90,6 +90,8 @@ public class TreasureChest {
     public void playAnimation(Location location) {
         stage = 0;
         treasureLocation.getHologram().hide();
+        treasureLocation.getHologram2().hide();
+        treasureLocation.getHologram3().hide();
         this.randomizer = treasureFactory.createRewardRandomizer(player, player.getPlayer(), treasureType);
         task = scheduler.runTaskTimer(() -> {
             if (stage >= 6) {
@@ -378,6 +380,12 @@ public class TreasureChest {
 
         if(treasureLocation.getHologram().isAlive()) {
             treasureLocation.getHologram().show();
+        }
+        if(treasureLocation.getHologram2().isAlive()) {
+            treasureLocation.getHologram2().show();
+        }
+        if(treasureLocation.getHologram3().isAlive()) {
+            treasureLocation.getHologram3().show();
         }
     }
 

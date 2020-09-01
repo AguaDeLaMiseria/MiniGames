@@ -12,6 +12,7 @@ import me.patothebest.gamecore.title.TitleManager;
 import me.patothebest.gamecore.treasure.TreasureFactory;
 import me.patothebest.gamecore.treasure.type.TreasureType;
 import me.patothebest.gamecore.util.SerializableObject;
+import me.patothebest.gamecore.util.Utils;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.block.Chest;
@@ -26,6 +27,8 @@ public class TreasureChestLocation implements SerializableObject {
     private final Chest chest;
     private final TreasureFactory treasureFactory;
     private Hologram hologram;
+    private Hologram hologram2;
+    private Hologram hologram3;
     private TreasureChest currentTreasureChest;
 
     @AssistedInject private TreasureChestLocation(Provider<NMS> nmsProvider, TreasureFactory treasureFactory, @Assisted Location location) {
@@ -67,8 +70,12 @@ public class TreasureChestLocation implements SerializableObject {
     }
 
     public void createHologram() {
-        hologram = nmsProvider.get().createHologram(location.clone().add(0.5, 1, 0.5));
-        hologram.setName(ChatColor.GREEN + "Cofre de Tesoros");
+        hologram = nmsProvider.get().createHologram(location.clone().add(0.5, 1.30, 0.5));
+        hologram2 = nmsProvider.get().createHologram(location.clone().add(0.5, 1, 0.5));
+        hologram3 = nmsProvider.get().createHologram(location.clone().add(0.5, 0.70, 0.5));
+        hologram.setName(Utils.format("&6&lCofre de Tesoros"));
+        hologram2.setName(Utils.format("&bAquí puedes &dcomprar cofres &bcon recompensas"));
+        hologram3.setName(Utils.format("&bcomo &dkits, jaulas, efectos, dinero, &by más!"));
     }
 
     /**
@@ -96,6 +103,14 @@ public class TreasureChestLocation implements SerializableObject {
      */
     public Hologram getHologram() {
         return hologram;
+    }
+
+    public Hologram getHologram2(){
+        return hologram2;
+    }
+
+    public Hologram getHologram3(){
+        return hologram3;
     }
 
     /**

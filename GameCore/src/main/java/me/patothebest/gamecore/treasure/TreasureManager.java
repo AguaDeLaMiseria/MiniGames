@@ -68,7 +68,12 @@ public class TreasureManager implements ActivableModule, ListenerModule, Reloada
             if(treasureLocation.getHologram() != null && treasureLocation.getHologram().isAlive()) {
                 treasureLocation.getHologram().delete();
             }
-
+            if(treasureLocation.getHologram2() != null && treasureLocation.getHologram2().isAlive()) {
+                treasureLocation.getHologram2().delete();
+            }
+            if(treasureLocation.getHologram3() != null && treasureLocation.getHologram3().isAlive()) {
+                treasureLocation.getHologram3().delete();
+            }
             TreasureChest currentTreasureChest = treasureLocation.getCurrentTreasureChest();
 
             if (currentTreasureChest != null) {

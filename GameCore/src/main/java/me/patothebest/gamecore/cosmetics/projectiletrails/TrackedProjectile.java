@@ -41,6 +41,7 @@ class TrackedProjectile {
     ParticleType getParticleType() {
         return projectileTrail.getParticleType();
     }
+
     ItemStack getParticleData(){
         return projectileTrail.getParticleData();
     }

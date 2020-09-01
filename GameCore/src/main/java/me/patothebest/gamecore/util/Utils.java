@@ -1745,7 +1745,10 @@ public class Utils {
         }
     }
 
+    public static String format(String s){
 
+        return ChatColor.translateAlternateColorCodes('&',s);
+    }
     /**
      * Sends a centered message to the player, assuming they have the
      * default texture pack or a texture pack which does not modify
