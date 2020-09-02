@@ -3,7 +3,6 @@ package me.patothebest.gamecore.treasure.chest;
 import com.google.inject.Provider;
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
-import me.patothebest.gamecore.itemstack.Material;
 import me.patothebest.gamecore.hologram.Hologram;
 import me.patothebest.gamecore.nms.NMS;
 import me.patothebest.gamecore.player.IPlayer;
@@ -15,8 +14,10 @@ import me.patothebest.gamecore.util.SerializableObject;
 import me.patothebest.gamecore.util.Utils;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.block.Chest;
+import org.bukkit.Material;
+
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
+import org.bukkit.material.EnderChest;
 
 import java.util.Map;
 
@@ -24,7 +25,7 @@ public class TreasureChestLocation implements SerializableObject {
 
     private final Provider<NMS> nmsProvider;
     private final Location location;
-    private final Chest chest;
+    private final EnderChest chest;
     private final TreasureFactory treasureFactory;
     private Hologram hologram;
     private Hologram hologram2;
@@ -34,10 +35,10 @@ public class TreasureChestLocation implements SerializableObject {
     @AssistedInject private TreasureChestLocation(Provider<NMS> nmsProvider, TreasureFactory treasureFactory, @Assisted Location location) {
         this.nmsProvider = nmsProvider;
         this.location = location;
-        this.location.getBlock().setType(Material.CHEST.parseMaterial());
+        this.location.getBlock().getState().setType(Material.ENDER_CHEST);
         this.treasureFactory = treasureFactory;
 
-        chest = (Chest) location.getBlock().getState();
+        chest = (EnderChest) location.getBlock().getState().getData();
         createHologram();
     }
 
@@ -45,10 +46,11 @@ public class TreasureChestLocation implements SerializableObject {
     @AssistedInject private TreasureChestLocation(Provider<NMS> nmsProvider, TreasureFactory treasureFactory, @Assisted Map<String, Object> data) {
         this.nmsProvider = nmsProvider;
         this.location = Location.deserialize((Map<String, Object>) data.get("location"));
-        this.location.getBlock().setType(Material.CHEST.parseMaterial());
+        this.location.getBlock().getState().setType(Material.ENDER_CHEST);
         this.treasureFactory = treasureFactory;
 
-        chest = (Chest) location.getBlock().getState();
+        chest = (EnderChest) location.getBlock().getState().getData();
+
         createHologram();
     }
 
@@ -92,7 +94,7 @@ public class TreasureChestLocation implements SerializableObject {
      *
      * @return the chest
      */
-    public Chest getChest() {
+    public EnderChest getChest() {
         return chest;
     }
 

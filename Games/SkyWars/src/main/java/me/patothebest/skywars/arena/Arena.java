@@ -120,12 +120,12 @@ public class Arena extends AbstractArena implements SpawneableArena, ChestArena,
             lobbyPhase.setTeamItemSlot(3);
 
             GameOptionsFeature gameOptionsFeature = lobbyPhase.registerFeature(GameOptionsFeature.class);
-            gameOptionsFeature.registerGameOption(lobbyPhase, CageSelectorGameOption.class, 9);
-            gameOptionsFeature.registerGameOption(lobbyPhase, VictoryEffectSelectorGameOption.class, 10);
-            gameOptionsFeature.registerGameOption(lobbyPhase, TimeSelectorGameOption.class, 12);
-            gameOptionsFeature.registerGameOption(lobbyPhase, WeatherSelectorGameOption.class, 14);
+            gameOptionsFeature.registerGameOption(lobbyPhase, CageSelectorGameOption.class, 10);
+            gameOptionsFeature.registerGameOption(lobbyPhase, VictoryEffectSelectorGameOption.class, 19);
+            gameOptionsFeature.registerGameOption(lobbyPhase, TimeSelectorGameOption.class, 13);
+            gameOptionsFeature.registerGameOption(lobbyPhase, WeatherSelectorGameOption.class, 22);
             gameOptionsFeature.registerGameOption(lobbyPhase, ProjectileTrailSelectorGameOption.class, 16);
-            gameOptionsFeature.registerGameOption(lobbyPhase, WalkTrailSelectorGameOption.class, 17);
+            gameOptionsFeature.registerGameOption(lobbyPhase, WalkTrailSelectorGameOption.class, 25);
             gameOptionsFeature.setSlot(5);
 
             addPhase(TeamAssignPhase.class);
@@ -134,12 +134,12 @@ public class Arena extends AbstractArena implements SpawneableArena, ChestArena,
         CagePhase cagePhase = addPhase(CagePhase.class);
 
         GameOptionsFeature gameOptionsFeature = (GameOptionsFeature) cagePhase.registerFeature(GameOptionsFeature.class);
-        gameOptionsFeature.registerGameOption(cagePhase, CageSelectorGameOption.class, 9);
-        gameOptionsFeature.registerGameOption(cagePhase, VictoryEffectSelectorGameOption.class, 10);
-        gameOptionsFeature.registerGameOption(cagePhase, TimeSelectorGameOption.class, 12);
-        gameOptionsFeature.registerGameOption(cagePhase, WeatherSelectorGameOption.class, 14);
+        gameOptionsFeature.registerGameOption(cagePhase, CageSelectorGameOption.class, 10);
+        gameOptionsFeature.registerGameOption(cagePhase, VictoryEffectSelectorGameOption.class, 19);
+        gameOptionsFeature.registerGameOption(cagePhase, TimeSelectorGameOption.class, 13);
+        gameOptionsFeature.registerGameOption(cagePhase, WeatherSelectorGameOption.class, 22);
         gameOptionsFeature.registerGameOption(cagePhase, ProjectileTrailSelectorGameOption.class, 16);
-        gameOptionsFeature.registerGameOption(cagePhase, WalkTrailSelectorGameOption.class, 17);
+        gameOptionsFeature.registerGameOption(cagePhase, WalkTrailSelectorGameOption.class, 25);
 
         if(arenaGroup == ArenaType.TEAM) {
             cagePhase.setAutoStart(true);

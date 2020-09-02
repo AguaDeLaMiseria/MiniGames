@@ -105,7 +105,7 @@ public class TreasureManager implements ActivableModule, ListenerModule, Reloada
             return;
         }
 
-        if (event.getClickedBlock().getType() != Material.CHEST.parseMaterial()) {
+        if (event.getClickedBlock().getType() != Material.ENDER_CHEST.parseMaterial()) {
             return;
         }
 
@@ -132,7 +132,7 @@ public class TreasureManager implements ActivableModule, ListenerModule, Reloada
             return;
         }
 
-        if (event.getClickedBlock().getType() != Material.CHEST.parseMaterial()) {
+        if (event.getClickedBlock().getType() != Material.ENDER_CHEST.parseMaterial()) {
             return;
         }
 

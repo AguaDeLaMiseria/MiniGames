@@ -13,7 +13,7 @@ public class GameOptionsUI extends GUIPage {
     private final GameOptionsFeature gameOptionsFeature;
 
     @Inject private GameOptionsUI(CorePlugin plugin, @Assisted Player player, @Assisted GameOptionsFeature gameOptionsFeature) {
-        super(plugin, player, CoreLang.GUI_GAME_OPTIONS_TITLE.getMessage(player), 27);
+        super(plugin, player, CoreLang.GUI_GAME_OPTIONS_TITLE.getMessage(player), 36);
         this.gameOptionsFeature = gameOptionsFeature;
         build();
     }
