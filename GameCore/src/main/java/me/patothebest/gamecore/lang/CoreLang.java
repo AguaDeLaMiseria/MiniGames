@@ -666,6 +666,16 @@ public enum CoreLang implements ILang {
     GUI_WEATHER_ITEM("&6Weather"),
     GUI_WEATHER_NO_PERMISSION("&cYou do not have permission to open the weather menu"),
 
+    // ChestType Vote UI
+    GUI_CHEST_TYPE(CommentType.SUBHEADER_SPACED, "ChestType Vote UI"),
+    GUI_CHEST_TYPE_VOTE_TITLE("Vote for the chest type"),
+    GUI_CHEST_TYPE_VOTE_BASIC("&eBasic"),
+    GUI_CHEST_TYPE_VOTE_NORMAL("&eNormal"),
+    GUI_CHEST_TYPE_VOTE_OP("&eOP"),
+    GUI_CHEST_TYPE_VOTE_VOTED("You voted for &6%weather%", "weather"),
+    GUI_CHEST_TYPE_ITEM("&6Chest type"),
+    GUI_CHEST_TYPE_NO_PERMISSION("&cYou do not have permission to open the chest type menu"),
+
     // Time Vote UI
     GUI_TIME_VOTE(CommentType.SUBHEADER_SPACED, "Time Vote UI"),
     GUI_TIME_VOTE_TITLE("Vote for the time"),

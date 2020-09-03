@@ -35,7 +35,7 @@ public class ChestFile extends ReadOnlyFile {
     // -------------------------------------------- //
 
     public ChestFile(CorePlugin plugin, ChestLocation chestLocation, ChestType chestType) {
-        super("chests" + File.separatorChar + chestLocation.getFolderName() + "-" + chestType.getFileName());
+        super("chests" + File.separatorChar + chestLocation.getFolderName() + "-" + chestType.getChestType());
         this.header = "Chest " + chestType.name();
         this.plugin = plugin;
 

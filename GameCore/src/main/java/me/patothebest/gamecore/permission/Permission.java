@@ -9,6 +9,7 @@ public enum Permission {
     CHOOSE_TEAM("choose.team"),
     CHOOSE_TEAM_OVERRIDE("choose.team.override"),
     CHOOSE_WEATHER("choose.weather"),
+    CHOOSE_CHESTTYPE("choose.chest"),
     CHOOSE_TIME("choose.time"),
     CHOOSE_ARENA("choose.arena"),
     CHAT_COLORS("chat.colors"),

@@ -13,6 +13,7 @@ import me.patothebest.gamecore.arena.types.SpawneableArena;
 import me.patothebest.gamecore.cosmetics.cage.CageStructure;
 import me.patothebest.gamecore.event.arena.GameEndEvent;
 import me.patothebest.gamecore.feature.features.chests.refill.ChestLocation;
+import me.patothebest.gamecore.feature.features.chests.refill.ChestTypeSelectorGameOption;
 import me.patothebest.gamecore.feature.features.gameoptions.GameOptionsFeature;
 import me.patothebest.gamecore.feature.features.gameoptions.individual.CageSelectorGameOption;
 import me.patothebest.gamecore.feature.features.gameoptions.individual.ProjectileTrailSelectorGameOption;
@@ -126,6 +127,7 @@ public class Arena extends AbstractArena implements SpawneableArena, ChestArena,
             gameOptionsFeature.registerGameOption(lobbyPhase, WeatherSelectorGameOption.class, 22);
             gameOptionsFeature.registerGameOption(lobbyPhase, ProjectileTrailSelectorGameOption.class, 16);
             gameOptionsFeature.registerGameOption(lobbyPhase, WalkTrailSelectorGameOption.class, 25);
+            gameOptionsFeature.registerGameOption(lobbyPhase, ChestTypeSelectorGameOption.class, 31);
             gameOptionsFeature.setSlot(5);
 
             addPhase(TeamAssignPhase.class);
@@ -140,6 +142,7 @@ public class Arena extends AbstractArena implements SpawneableArena, ChestArena,
         gameOptionsFeature.registerGameOption(cagePhase, WeatherSelectorGameOption.class, 22);
         gameOptionsFeature.registerGameOption(cagePhase, ProjectileTrailSelectorGameOption.class, 16);
         gameOptionsFeature.registerGameOption(cagePhase, WalkTrailSelectorGameOption.class, 25);
+        gameOptionsFeature.registerGameOption(cagePhase, ChestTypeSelectorGameOption.class, 31);
 
         if(arenaGroup == ArenaType.TEAM) {
             cagePhase.setAutoStart(true);
