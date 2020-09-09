@@ -13,7 +13,8 @@ import me.patothebest.gamecore.arena.types.SpawneableArena;
 import me.patothebest.gamecore.cosmetics.cage.CageStructure;
 import me.patothebest.gamecore.event.arena.GameEndEvent;
 import me.patothebest.gamecore.feature.features.chests.refill.ChestLocation;
-import me.patothebest.gamecore.feature.features.chests.refill.ChestTypeSelectorGameOption;
+import me.patothebest.gamecore.feature.features.chests.refill.ChestRefillFeature;
+import me.patothebest.gamecore.feature.features.chests.refill.ChestType;
 import me.patothebest.gamecore.feature.features.gameoptions.GameOptionsFeature;
 import me.patothebest.gamecore.feature.features.gameoptions.individual.CageSelectorGameOption;
 import me.patothebest.gamecore.feature.features.gameoptions.individual.ProjectileTrailSelectorGameOption;
@@ -22,7 +23,6 @@ import me.patothebest.gamecore.feature.features.gameoptions.individual.WalkTrail
 import me.patothebest.gamecore.feature.features.gameoptions.time.TimeSelectorGameOption;
 import me.patothebest.gamecore.feature.features.gameoptions.weather.WeatherSelectorGameOption;
 import me.patothebest.gamecore.itemstack.Material;
-import me.patothebest.gamecore.lang.CoreLang;
 import me.patothebest.gamecore.phase.phases.CagePhase;
 import me.patothebest.gamecore.phase.phases.CelebrationPhase;
 import me.patothebest.gamecore.phase.phases.EndPhase;
@@ -51,7 +51,7 @@ public class Arena extends AbstractArena implements SpawneableArena, ChestArena,
     // -------------------------------------------- //
     // FIELDS
     // -------------------------------------------- //
-
+    private ChestType chestType;
     private ArenaMode arenaMode;
     private final List<ArenaLocation> spawns = new ArrayList<>();
     private final List<ArenaLocation> chestLocations = new ArrayList<>();
@@ -122,12 +122,12 @@ public class Arena extends AbstractArena implements SpawneableArena, ChestArena,
 
             GameOptionsFeature gameOptionsFeature = lobbyPhase.registerFeature(GameOptionsFeature.class);
             gameOptionsFeature.registerGameOption(lobbyPhase, CageSelectorGameOption.class, 10);
-            gameOptionsFeature.registerGameOption(lobbyPhase, VictoryEffectSelectorGameOption.class, 19);
+            gameOptionsFeature.registerGameOption(lobbyPhase, VictoryEffectSelectorGameOption.class, 28);
             gameOptionsFeature.registerGameOption(lobbyPhase, TimeSelectorGameOption.class, 13);
             gameOptionsFeature.registerGameOption(lobbyPhase, WeatherSelectorGameOption.class, 22);
             gameOptionsFeature.registerGameOption(lobbyPhase, ProjectileTrailSelectorGameOption.class, 16);
-            gameOptionsFeature.registerGameOption(lobbyPhase, WalkTrailSelectorGameOption.class, 25);
-            gameOptionsFeature.registerGameOption(lobbyPhase, ChestTypeSelectorGameOption.class, 31);
+            gameOptionsFeature.registerGameOption(lobbyPhase, WalkTrailSelectorGameOption.class, 34);
+            gameOptionsFeature.registerGameOption(lobbyPhase, ChestRefillFeature.class, 31);
             gameOptionsFeature.setSlot(5);
 
             addPhase(TeamAssignPhase.class);
@@ -137,12 +137,12 @@ public class Arena extends AbstractArena implements SpawneableArena, ChestArena,
 
         GameOptionsFeature gameOptionsFeature = (GameOptionsFeature) cagePhase.registerFeature(GameOptionsFeature.class);
         gameOptionsFeature.registerGameOption(cagePhase, CageSelectorGameOption.class, 10);
-        gameOptionsFeature.registerGameOption(cagePhase, VictoryEffectSelectorGameOption.class, 19);
+        gameOptionsFeature.registerGameOption(cagePhase, VictoryEffectSelectorGameOption.class, 28);
         gameOptionsFeature.registerGameOption(cagePhase, TimeSelectorGameOption.class, 13);
         gameOptionsFeature.registerGameOption(cagePhase, WeatherSelectorGameOption.class, 22);
         gameOptionsFeature.registerGameOption(cagePhase, ProjectileTrailSelectorGameOption.class, 16);
-        gameOptionsFeature.registerGameOption(cagePhase, WalkTrailSelectorGameOption.class, 25);
-        gameOptionsFeature.registerGameOption(cagePhase, ChestTypeSelectorGameOption.class, 31);
+        gameOptionsFeature.registerGameOption(cagePhase, WalkTrailSelectorGameOption.class, 34);
+        gameOptionsFeature.registerGameOption(cagePhase, ChestRefillFeature.class, 31);
 
         if(arenaGroup == ArenaType.TEAM) {
             cagePhase.setAutoStart(true);
@@ -211,6 +211,16 @@ public class Arena extends AbstractArena implements SpawneableArena, ChestArena,
         }
 
         throw new IllegalArgumentException("Unknown chest location " + chestLocation + "!");
+    }
+
+    @Override
+    public ChestType getChestType() {
+        return chestType;
+    }
+
+    @Override
+    public void setChestType(ChestType chestType) {
+        this.chestType = chestType;
     }
 
     // -------------------------------------------- //

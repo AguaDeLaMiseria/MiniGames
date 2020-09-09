@@ -1,6 +1,5 @@
 package me.patothebest.gamecore.feature.features.chests.refill;
 
-
 import me.patothebest.gamecore.lang.CoreLang;
 import me.patothebest.gamecore.lang.interfaces.ILang;
 import org.bukkit.Material;
@@ -24,11 +23,6 @@ public enum ChestType {
         this.displayMaterial = displayMaterial;
     }
 
-    /**
-     * Gets the file name
-     *
-     * @return the file name
-     */
     public ILang getLangMessage() {
         return langMessage;
     }

@@ -12,6 +12,7 @@ import me.patothebest.gamecore.arena.types.ChestArena;
 import me.patothebest.gamecore.arena.types.SpawneableArena;
 import me.patothebest.gamecore.event.arena.GameEndEvent;
 import me.patothebest.gamecore.feature.features.chests.refill.ChestLocation;
+import me.patothebest.gamecore.feature.features.chests.refill.ChestType;
 import me.patothebest.gamecore.feature.features.gameoptions.GameOptionsFeature;
 import me.patothebest.gamecore.feature.features.gameoptions.individual.ProjectileTrailSelectorGameOption;
 import me.patothebest.gamecore.feature.features.gameoptions.individual.VictoryEffectSelectorGameOption;
@@ -48,7 +49,7 @@ public class Arena extends AbstractArena implements ChestArena, CentrableArena, 
     // -------------------------------------------- //
     // FIELDS
     // -------------------------------------------- //
-
+    private ChestType chestType;
     private final List<ArenaLocation> supplyDrops = new ArrayList<>();
     private final List<ArenaLocation> spawns = new ArrayList<>();
     private final List<ArenaLocation> chestLocations = new ArrayList<>();
@@ -211,6 +212,16 @@ public class Arena extends AbstractArena implements ChestArena, CentrableArena, 
 
 
         throw new IllegalArgumentException("Unknown chest location " + chestLocation + "!");
+    }
+
+    @Override
+    public ChestType getChestType() {
+        return chestType;
+    }
+
+    @Override
+    public void setChestType(ChestType chestType) {
+        this.chestType = chestType;
     }
 
     // -------------------------------------------- //

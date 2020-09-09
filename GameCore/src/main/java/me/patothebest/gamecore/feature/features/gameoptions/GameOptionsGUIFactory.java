@@ -1,7 +1,6 @@
 package me.patothebest.gamecore.feature.features.gameoptions;
 
 import me.patothebest.gamecore.feature.features.chests.refill.ChestRefillFeature;
-import me.patothebest.gamecore.feature.features.chests.refill.ChestTypeSelectorGameOption;
 import me.patothebest.gamecore.feature.features.chests.refill.ChestTypeUI;
 import me.patothebest.gamecore.feature.features.gameoptions.time.TimeSelectorGameOption;
 import me.patothebest.gamecore.feature.features.gameoptions.time.TimeVoteUI;
@@ -15,6 +14,6 @@ public interface GameOptionsGUIFactory {
 
     TimeVoteUI openTimeUI(Player player, TimeSelectorGameOption timeSelectorGameOption);
 
-    ChestTypeUI openChestTypeUI(Player player, ChestTypeSelectorGameOption chestTypeSelectorGameOption);
+    ChestTypeUI openChestTypeUI(Player player, ChestRefillFeature chestRefillFeature);
 
 }

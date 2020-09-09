@@ -11,18 +11,18 @@ import org.bukkit.entity.Player;
 
 public class ChestTypeUI extends GUIPage {
 
-    private final ChestTypeSelectorGameOption chestTypeSelectorGameOption;
+    private final ChestRefillFeature chestRefillFeature;
 
     @Inject
-    private ChestTypeUI(CorePlugin plugin, @Assisted Player player, @Assisted ChestTypeSelectorGameOption chestTypeSelectorGameOption) {
+    private ChestTypeUI(CorePlugin plugin, @Assisted Player player, @Assisted ChestRefillFeature chestRefillFeature) {
         super(plugin, player, CoreLang.GUI_CHEST_TYPE_VOTE_TITLE.getMessage(player), 9);
-        this.chestTypeSelectorGameOption = chestTypeSelectorGameOption;
+        this.chestRefillFeature = chestRefillFeature;
         build();
     }
 
     @Override
     protected void buildPage() {
-        ChestType selectedChestType = chestTypeSelectorGameOption.getChestTypeVoting().get(getPlayer());
+        ChestType selectedChestType = chestRefillFeature.getChestTypeVoting().get(getPlayer());
 
         for (ChestType chestType : ChestType.values()) {
             addButton(new SimpleButton(new ItemStackBuilder(chestType.getItem())
@@ -30,10 +30,10 @@ public class ChestTypeUI extends GUIPage {
                     .lore(selectedChestType == chestType ? CoreLang.GUI_SHOP_SELECTED.getMessage(getPlayer()) : CoreLang.GUI_SHOP_CLICK_TO_SELECT.getMessage(getPlayer()))
                     .glowing(selectedChestType == chestType))
                     .action(() -> {
-                        chestTypeSelectorGameOption.getChestTypeVoting().remove(player);
+                        chestRefillFeature.getChestTypeVoting().remove(player);
 
                         CoreLang.GUI_CHEST_TYPE_VOTE_VOTED.replaceAndSend(player, chestType.getLangMessage());
-                        chestTypeSelectorGameOption.getChestTypeVoting().put(player, chestType);
+                        chestRefillFeature.getChestTypeVoting().put(player, chestType);
                         refresh();
                     }), chestType.getSlot());
         }

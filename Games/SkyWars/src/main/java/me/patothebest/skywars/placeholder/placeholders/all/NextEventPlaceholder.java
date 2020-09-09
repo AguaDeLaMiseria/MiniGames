@@ -1,12 +1,8 @@
 package me.patothebest.skywars.placeholder.placeholders.all;
 
 import me.patothebest.gamecore.arena.AbstractArena;
-import me.patothebest.gamecore.lang.CoreLang;
-import me.patothebest.gamecore.lang.CoreLocaleManager;
 import me.patothebest.gamecore.placeholder.PlaceHolder;
-import me.patothebest.gamecore.player.IPlayer;
 import me.patothebest.gamecore.player.PlayerManager;
-import me.patothebest.skywars.lang.Lang;
 import me.patothebest.skywars.phase.SkyWarsPhase;
 import org.bukkit.entity.Player;
 
@@ -36,7 +32,7 @@ public class NextEventPlaceholder implements PlaceHolder {
                 || !(arena.getPhase().getNextPhase() instanceof SkyWarsPhase) ? "None" : ((SkyWarsPhase)
                 arena.getPhase().getNextPhase()).getPhaseType().getConfigName()
                 .replace("null", "Ninguno")
-                .replace("Refill", "Rellenado de cofres")
+                .replace("Refill", "Rellenado")
                 .replace("Doom", "La muerte")
                 .replace("Border Shrink", "Reducción del borde")
                 .replace("End", "Final");

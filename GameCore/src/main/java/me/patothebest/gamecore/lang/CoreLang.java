@@ -343,6 +343,7 @@ public enum CoreLang implements ILang {
     BORDER_SHRINKING("&4&lWARNING: &c&lBorder is shrinking!"),
     BORDER_SHRINKING_SUBTITLE("&6Border is shrinking!"),
     CHESTS_REFILLED("&eChests refilled!"),
+    DIFFICULTY("&eDificulty: &6%difficulty%", "difficulty"),
     GRACE_PERIOD_ENDING("&eGrace period ending in &c%time% &e%secondlang%!", "time", "secondlang"),
     GRACE_PERIOD_ENDED("&cGrace period ended!"),
     DEATHMATCH_STARTING("&eDeathmatch starting in &c%time% &e%secondlang%", "time", "secondlang"),
@@ -672,7 +673,7 @@ public enum CoreLang implements ILang {
     GUI_CHEST_TYPE_VOTE_BASIC("&eBasic"),
     GUI_CHEST_TYPE_VOTE_NORMAL("&eNormal"),
     GUI_CHEST_TYPE_VOTE_OP("&eOP"),
-    GUI_CHEST_TYPE_VOTE_VOTED("You voted for &6%weather%", "weather"),
+    GUI_CHEST_TYPE_VOTE_VOTED("You voted for &6%difficulty%", "difficulty"),
     GUI_CHEST_TYPE_ITEM("&6Chest type"),
     GUI_CHEST_TYPE_NO_PERMISSION("&cYou do not have permission to open the chest type menu"),
 
