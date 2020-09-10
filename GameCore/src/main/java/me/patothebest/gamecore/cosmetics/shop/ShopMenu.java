@@ -152,7 +152,12 @@ public class ShopMenu<ShopItemType extends ShopItem, PlayerType extends IPlayer>
                             shopFactory.createUsesShopMenu(player, item2, shopManager, shopItem);
                             refresh();
                         } else if(clickType.name().contains("LEFT") && shopItem.isNegative() && !getPlayer().hasPermission(shopItem.getPermission())){
-                            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), shopItem.getCommand().replace("%player_name%", player.getName()));
+                            if (shopItem.getCommand() != null){
+                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), shopItem.getCommand().replace("%player_name%", player.getName()));
+                            }
+                            if (shopItem.getMessage() != null){
+                                player.sendMessage(shopItem.getMessage());
+                            }
                             break;
                         } else {
                             iPlayer.selectItem(shopItem);

@@ -27,4 +27,6 @@ public interface ShopItem extends NameableObject {
     }
 
     String getCommand();
+
+    String getMessage();
 }

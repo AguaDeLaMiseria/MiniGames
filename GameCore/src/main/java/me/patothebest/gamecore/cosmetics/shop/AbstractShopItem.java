@@ -13,6 +13,7 @@ public abstract class AbstractShopItem implements ShopItem {
     private final String permission;
     private final boolean permanent;
     private final String command;
+    private final String message;
 
     public AbstractShopItem() {
         configName = "";
@@ -22,6 +23,7 @@ public abstract class AbstractShopItem implements ShopItem {
         permission = "";
         permanent = true;
         command = "";
+        message = "";
     }
 
     @SuppressWarnings("unchecked")
@@ -33,6 +35,7 @@ public abstract class AbstractShopItem implements ShopItem {
         this.permission = (String) data.getOrDefault("permission", "");
         this.permanent = (boolean) data.getOrDefault("permanent", true);
         this.command = (String) data.get("command");
+        this.message = (String) data.get("message");
     }
 
     @Override
@@ -67,4 +70,7 @@ public abstract class AbstractShopItem implements ShopItem {
 
     @Override
     public final String getCommand() {return command;}
+
+    @Override
+    public final String getMessage() {return message;}
 }
