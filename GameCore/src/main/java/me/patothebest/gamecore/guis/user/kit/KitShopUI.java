@@ -16,6 +16,8 @@ import org.bukkit.entity.Player;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class KitShopUI extends GUIMultiPage {
@@ -38,6 +40,7 @@ public class KitShopUI extends GUIMultiPage {
         List<Kit> enabledKits = new ArrayList<>(kitManager.getEnabledKits());
         IPlayer corePlayer = playerManager.getPlayer(getPlayer());
         boolean showChooseDefault = !corePlayer.isInArena();
+        Collections.sort(enabledKits, new KitPriceComparator());
         enabledKits.add(0, kitManager.getDefaultKit());
         enabledKits.stream().skip(currentPage*pageSize).limit(pageSize).forEach(kit -> {
             if (kit.getPermissionGroup().hasPermission(getPlayer()) || !kit.getPermissionGroup().hasPermission(getPlayer())) {
@@ -84,4 +87,9 @@ public class KitShopUI extends GUIMultiPage {
         return kitManager.getEnabledKits().size();
     }
 
+}
+class KitPriceComparator implements Comparator<Kit> {
+    public int compare(Kit kit1, Kit kit2) {
+        return (int) (kit1.getCost() - kit2.getCost());
+    }
 }
