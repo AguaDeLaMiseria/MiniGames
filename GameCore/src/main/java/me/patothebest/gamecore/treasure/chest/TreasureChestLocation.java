@@ -72,9 +72,9 @@ public class TreasureChestLocation implements SerializableObject {
     }
 
     public void createHologram() {
-        hologram = nmsProvider.get().createHologram(location.clone().add(0.5, 1.30, 0.5));
-        hologram2 = nmsProvider.get().createHologram(location.clone().add(0.5, 1, 0.5));
-        hologram3 = nmsProvider.get().createHologram(location.clone().add(0.5, 0.70, 0.5));
+        hologram = nmsProvider.get().createHologram(location.clone().add(0.5, 1.60, 0.5));
+        hologram2 = nmsProvider.get().createHologram(location.clone().add(0.5, 1.30, 0.5));
+        hologram3 = nmsProvider.get().createHologram(location.clone().add(0.5, 1, 0.5));
         hologram.setName(Utils.format("&6&lCofre de Tesoros"));
         hologram2.setName(Utils.format("&bAquí puedes &dcomprar cofres &bcon recompensas"));
         hologram3.setName(Utils.format("&bcomo &dkits, jaulas, efectos, dinero, &by más!"));

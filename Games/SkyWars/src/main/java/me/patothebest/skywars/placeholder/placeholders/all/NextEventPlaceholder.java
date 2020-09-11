@@ -33,7 +33,7 @@ public class NextEventPlaceholder implements PlaceHolder {
                 arena.getPhase().getNextPhase()).getPhaseType().getConfigName()
                 .replace("null", "Ninguno")
                 .replace("Refill", "Rellenado")
-                .replace("Doom", "La muerte")
+                .replace("Doom", "Muerte súbdita")
                 .replace("Border Shrink", "Reducción del borde")
                 .replace("End", "Final");
     }

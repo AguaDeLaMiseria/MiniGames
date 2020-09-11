@@ -29,6 +29,6 @@ public class NextEventTimePlaceholder implements PlaceHolder {
 
     @Override
     public String replace(AbstractArena arena) {
-        return arena == null || arena.getFeature(LimitedTimePhaseFeature.class) == null ? "None" : Utils.secondsToString(Math.max(0, arena.getFeature(LimitedTimePhaseFeature.class).getRemainingTime()));
+        return arena == null || arena.getFeature(LimitedTimePhaseFeature.class) == null ? "Ninguno" : Utils.secondsToString(Math.max(0, arena.getFeature(LimitedTimePhaseFeature.class).getRemainingTime()));
     }
 }

@@ -22,6 +22,7 @@ public class InventoryItem implements ConfigurationSerializable {
     private final List<String> lore;
     private final ItemStackBuilder itemStack;
     private String command;
+    private  String console;
 
     // -------------------------------------------- //
     // CONSTRUCTOR
@@ -37,6 +38,9 @@ public class InventoryItem implements ConfigurationSerializable {
 
         if (map.containsKey("command")) {
             command = (String) map.get("command");
+        }
+        if (map.containsKey("console")) {
+            console = (String) map.get("console");
         }
 
         itemStack.name(name);
@@ -75,5 +79,8 @@ public class InventoryItem implements ConfigurationSerializable {
 
     public String getCommand() {
         return command;
+    }
+    public String getConsole(){
+        return console;
     }
 }

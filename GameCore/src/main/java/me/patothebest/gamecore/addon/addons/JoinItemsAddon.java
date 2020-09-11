@@ -65,12 +65,15 @@ public class JoinItemsAddon extends Addon {
             return;
         }
 
-        if (inventoryItem.getCommand() == null) {
-            return;
+        if (inventoryItem.getCommand() != null) {
+            event.getPlayer().chat("/" + inventoryItem.getCommand());
         }
 
-        //event.getPlayer().chat("/" + inventoryItem.getCommand());
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), inventoryItem.getCommand().replace("%player_name%", event.getPlayer().getName()));
+        if (inventoryItem.getConsole() != null){
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), inventoryItem.getConsole().replace("%player_name%", event.getPlayer().getName()));
+        }
+
+
 
     }
 
@@ -105,12 +108,13 @@ public class JoinItemsAddon extends Addon {
             return;
         }
 
-        if (inventoryItem.getCommand() == null) {
-            return;
+        if (inventoryItem.getCommand() != null) {
+            player.getPlayer().chat("/" + inventoryItem.getCommand());
+        }
+        if (inventoryItem.getConsole() != null){
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), inventoryItem.getConsole().replace("%player_name%", player.getPlayer().getName()));
         }
 
-        //player.getPlayer().chat("/" + inventoryItem.getCommand());
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), inventoryItem.getCommand().replace("%player_name%", player.getPlayer().getName()));
         event.setCancelled(true);
     }
 
