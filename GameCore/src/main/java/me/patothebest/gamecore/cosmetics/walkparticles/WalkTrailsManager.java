@@ -124,6 +124,8 @@ public class WalkTrailsManager extends AbstractShopManager<WalkTrail> {
             location.add(Math.cos(angle) * distance, Utils.randDouble(0, 0.375), Math.sin(angle) * distance);
             if (walkTrail.getParticleType() == ParticleType.NOTE) {
                 FastParticle.spawnParticle(location.getWorld(), walkTrail.getParticleType(), location, 1, 0, 0, 0, Utils.randInt(0, 24));
+            } else if (walkTrail.getParticleType().getName().equalsIgnoreCase("item")) {
+                FastParticle.spawnParticle(location.getWorld(), walkTrail.getParticleType(), location, 1, 0, 0, 0, 0, walkTrail.getParticleData());
             } else {
                 FastParticle.spawnParticle(location.getWorld(), walkTrail.getParticleType(), location, 1, 0, 0, 0, 0);
             }

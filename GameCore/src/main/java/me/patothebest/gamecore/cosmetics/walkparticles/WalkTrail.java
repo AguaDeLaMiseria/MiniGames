@@ -12,6 +12,7 @@ public class WalkTrail extends AbstractShopItem {
 
     private final ParticleType particleType;
     private final ItemStack displayItem;
+    private final ItemStack getParticleData;
     private final int interval;
     private final int amount;
 
@@ -21,6 +22,7 @@ public class WalkTrail extends AbstractShopItem {
         this.displayItem = Utils.itemStackFromString((String) data.get("display-item"));
         this.interval = (int) data.getOrDefault("interval", 2);
         this.amount = (int) data.getOrDefault("amount", 1);
+        this.getParticleData = Utils.itemStackFromString((String) data.get("data"));
 
         ParserValidations.isTrue(particleType.isSupported(), "The particle effect " + particleType.getName() + " is not supported on this version.");
     }
@@ -32,6 +34,10 @@ public class WalkTrail extends AbstractShopItem {
 
     public ParticleType getParticleType() {
         return particleType;
+    }
+
+    public ItemStack getParticleData() {
+        return getParticleData;
     }
 
     public int getInterval() {

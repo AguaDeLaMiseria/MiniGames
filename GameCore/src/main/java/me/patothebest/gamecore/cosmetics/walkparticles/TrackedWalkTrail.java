@@ -1,6 +1,7 @@
 package me.patothebest.gamecore.cosmetics.walkparticles;
 
 import fr.mrmicky.fastparticle.ParticleType;
+import org.bukkit.inventory.ItemStack;
 
 class TrackedWalkTrail {
 
@@ -13,6 +14,10 @@ class TrackedWalkTrail {
 
     ParticleType getParticleType() {
         return walkTrail.getParticleType();
+    }
+
+    ItemStack getParticleData(){
+        return walkTrail.getParticleData();
     }
 
     int getAmount () {
