@@ -110,6 +110,7 @@ public class ChatAddon extends Addon {
         } else {
             for (AbstractArena arena : arenaManager.getArenas().values()) {
                 event.getRecipients().removeAll(arena.getPlayers());
+                event.getRecipients().removeAll(arena.getSpectators());
             }
 
             setMessage(event, lobbyChat);

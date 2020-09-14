@@ -82,16 +82,17 @@ public class SignListener implements ListenerModule {
             return;
         }
 
-        if(arena.getPhase().canJoin()) {
+        if(arena.getPhase().canJoin() && arena.canJoin(event.getPlayer())) {
             if(arena.isFull()) {
                 event.getPlayer().sendMessage(CoreLang.ARENA_IS_FULL.getMessage(event.getPlayer()));
                 return;
             }
 
             arena.addPlayer(event.getPlayer());
+        } else if(arena.canJoinArena()) {
+            arena.addSpectator(event.getPlayer());
         } else {
             event.getPlayer().sendMessage(CoreLang.ARENA_IS_RESTARTING.getMessage(event.getPlayer()));
-            //player.sendMessage(Lang.ARENA_IS_NOT_PLAYABLE.getMessage(player));
         }
 
         signManager.updateSigns();

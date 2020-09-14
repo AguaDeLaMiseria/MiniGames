@@ -5,6 +5,7 @@ import me.patothebest.gamecore.modules.ActivableModule;
 import me.patothebest.gamecore.modules.ListenerModule;
 import me.patothebest.gamecore.modules.ModuleName;
 import me.patothebest.gamecore.storage.StorageManager;
+import me.patothebest.gamecore.util.Utils;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -116,6 +117,9 @@ public class PlayerManager implements ListenerModule, ActivableModule {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerJoin(PlayerJoinEvent event) {
         players.get(event.getPlayer().getName()).joinPrepare();
+        if (!event.getPlayer().hasPermission("cubourbano.skywars.join")){
+            event.getPlayer().kickPlayer(Utils.format("&cDebes tener rango para ingresar! &aConsíguelo en &btienda.cubourbano.net"));
+        }
     }
 
     @EventHandler

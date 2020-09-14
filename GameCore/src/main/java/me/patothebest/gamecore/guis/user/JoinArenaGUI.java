@@ -51,9 +51,12 @@ public class JoinArenaGUI extends DynamicPaginatedUI<AbstractArena> implements R
                 .color(arena.getArenaState().getData())
                 .glowing(arena.isPrivateArena())
                 .name(arena.getArenaState().getColor() + arena.getDisplayName())
-                .lore(arena.getArenaState().getColor() + arena.getArenaState().getName(),
+                .lore(arena.getArenaState().getColor() + arena.getArenaState().getName().replace("Waiting", "Esperando").
+                        replace("Starting", "Comenzando").replace("In-Game", "En partida").
+                        replace("Ending", "Finalizando").replace("Restarting", "Reiniciando").
+                        replace("Other", "Otro"),
                         "",
-                        ChatColor.WHITE + "Players: " + ChatColor.RED + arena.getPlayers().size() + "/" + arena.getMaxPlayers(),
+                        ChatColor.WHITE + "Jugadores: " + ChatColor.RED + arena.getPlayers().size() + "/" + arena.getMaxPlayers(),
                         "")
                 .amount(arena.getPlayers().size());
 
