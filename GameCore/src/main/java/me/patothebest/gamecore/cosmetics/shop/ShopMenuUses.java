@@ -71,7 +71,7 @@ public class ShopMenuUses<ShopItemType extends ShopItem, PlayerType extends IPla
         }
 
         displayItem.setAmount(itemUses);
-        addButton(new SimpleButton(new ItemStackBuilder(Material.EMERALD).name(CoreLang.GUI_SHOP_PRICE_USE_NAME.getMessage(player)).lore(ChatColor.GRAY.toString() + "$" + (shopItem.getPrice() * itemUses) + (economyProvider.get() != null ? " " + economyProvider.get().currencyNamePlural() : "") + " "+ CoreLang.GUI_SHOP_PRICE_USE_LORE.getMessage(player))), 4);
+        addButton(new SimpleButton(new ItemStackBuilder(Material.EMERALD).name(CoreLang.GUI_SHOP_PRICE_USE_NAME.getMessage(player)).lore(ChatColor.GRAY.toString() + "$" + (shopItem.getPrice() * itemUses) + " "+ CoreLang.GUI_SHOP_PRICE_USE_LORE.getMessage(player))), 4);
         addButton(new PlaceHolder(displayItem), 22);
         addButton(new SimpleButton(new ItemStackBuilder().createCancelItem()).action(() -> shopFactory.createShopMenu(player, shopManager)), 38);
 

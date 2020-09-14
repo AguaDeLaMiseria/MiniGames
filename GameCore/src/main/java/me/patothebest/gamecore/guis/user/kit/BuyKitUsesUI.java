@@ -65,7 +65,7 @@ public class BuyKitUsesUI extends GUIPage {
             addButton(new IncrementingButton(10, onUpdateItemSize), 25);
         }
 
-        addButton(new SimpleButton(new ItemStackBuilder(Material.EMERALD).name(CoreLang.GUI_SHOP_PRICE_USE_NAME.getMessage(player)).lore(ChatColor.GRAY.toString() + "$" + (kit.getCost() * kitUses) + (economy.get() != null ? " " + economy.get().currencyNamePlural() : "") +  " "+ CoreLang.GUI_SHOP_PRICE_USE_LORE.getMessage(player))), 4);
+        addButton(new SimpleButton(new ItemStackBuilder(Material.EMERALD).name(CoreLang.GUI_SHOP_PRICE_USE_NAME.getMessage(player)).lore(ChatColor.GRAY.toString() + "$" + (kit.getCost() * kitUses) +  " "+ CoreLang.GUI_SHOP_PRICE_USE_LORE.getMessage(player))), 4);
         addButton(new PlaceHolder(kit.finalDisplayItem(iPlayer, true).amount(kitUses)), 22);
         addButton(new SimpleButton(new ItemStackBuilder().createCancelItem()).action(() -> userGUIFactory.openKitShop(player)), 38);
 

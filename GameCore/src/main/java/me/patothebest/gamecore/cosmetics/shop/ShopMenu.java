@@ -36,7 +36,9 @@ public class ShopMenu<ShopItemType extends ShopItem, PlayerType extends IPlayer>
                     .name(shopItem.getDisplayName());
 
             if(!shopItem.getDescription().isEmpty() && !shopItem.getDescription().get(0).isEmpty()) {
-                itemStackShopItem.addLore(shopItem.getDescription());
+                if (!getPlayer().hasPermission(shopItem.getPermission())){
+                    itemStackShopItem.addLore(shopItem.getDescription());
+                }
             }
 
             if (!iPlayer.canUse(shopItem) && !shopItem.isFree() && !shopItem.isNegative()) {
@@ -48,8 +50,9 @@ public class ShopMenu<ShopItemType extends ShopItem, PlayerType extends IPlayer>
             boolean canBuyUses = false;
             ShopAction action = ShopAction.DO_NOTHING;
 
-            if (shopItem.getPermission() == null || shopItem.getPermission().isEmpty() || getPlayer().hasPermission(shopItem.getPermission())) {
-                /*if (iPlayer.isSelected(shopItem)) {
+
+            if (shopItem.getPermission() == null || shopItem.getPermission().isEmpty() || (!getPlayer().hasPermission(shopItem.getPermission()) && !shopItem.isNegative())) {
+                if (iPlayer.isSelected(shopItem)) {
                     if(shopItem.isPermanent()) {
                         itemStack.addLore(CoreLang.GUI_SHOP_SELECTED.getMessage(getPlayer())).glowing(true);
                     } else {
@@ -74,11 +77,7 @@ public class ShopMenu<ShopItemType extends ShopItem, PlayerType extends IPlayer>
                         itemStack.addLore(CoreLang.GUI_SHOP_LEFT_CLICK_SELECT.getMessage(getPlayer()));
                         action = ShopAction.SELECT;
                     }
-                } else if (shopItem.isNegative()){
-                    itemStack.addLore(CoreLang.GUI_SHOP_CLICK_TO_SELECT.getMessage(getPlayer()));
-                    action = ShopAction.SELECT;
-                }
-                else {
+                } else {
                     if(shopItem.isPermanent()) {
                         itemStack.addLore(CoreLang.GUI_SHOP_CLICK_TO_BUY.getMessage(getPlayer()));
                         action = ShopAction.BUY;
@@ -89,52 +88,20 @@ public class ShopMenu<ShopItemType extends ShopItem, PlayerType extends IPlayer>
                         itemStack.addLore(CoreLang.GUI_SHOP_CLICK_TO_BUY.getMessage(getPlayer()));
                         action = ShopAction.BUY;
                     }
-                }*/
+                }
+            } else if (getPlayer().hasPermission(shopItem.getPermission())){
                 if (iPlayer.isSelected(shopItem)) {
                     itemStack.addLore(CoreLang.GUI_SHOP_SELECTED.getMessage(getPlayer())).glowing(true);
-                } else{
+                } else {
                     itemStack.addLore(CoreLang.GUI_SHOP_LEFT_CLICK_SELECT.getMessage(getPlayer()));
                     action = ShopAction.SELECT;
                 }
             } else{
-                if (iPlayer.isSelected(shopItem)) {
-                    itemStack.addLore(CoreLang.GUI_SHOP_SELECTED.getMessage(getPlayer())).glowing(true);
-                }
-                if(shopItem.isPermanent()) {
-                    itemStack.addLore(CoreLang.GUI_SHOP_CLICK_TO_BUY.getMessage(getPlayer()));
-                    action = ShopAction.SELECT;
-                } else {
-                    if (!iPlayer.canUse(shopItem)){
-                        canBuyUses = true;
-                        itemStack.addLore(CoreLang.GUI_SHOP_USES_LORE.replace(iPlayer, 0));
-                        itemStack.blankLine();
-                        itemStack.addLore(CoreLang.GUI_SHOP_CLICK_TO_BUY.getMessage(getPlayer()));
-                        action = ShopAction.BUY;
-                    } else {
-                        canBuyUses = true;
-                        itemStack.addLore(CoreLang.GUI_SHOP_USES_LORE.replace(iPlayer, iPlayer.getRemainingUses(shopItem)));
-                        itemStack.blankLine();
-                        itemStack.addLore(CoreLang.GUI_SHOP_RIGHT_CLICK.getMessage(getPlayer()));
-                        itemStack.addLore(CoreLang.GUI_SHOP_LEFT_CLICK_SELECT.getMessage(getPlayer()));
-                        action = ShopAction.SELECT;
-                    }
-                }
-                //itemStack.addLore(CoreLang.GUI_SHOP_NO_PERMISSION_STRING.replace(getPlayer()));
-            }
-           /* if (shopItem.getPermission() == null || shopItem.getPermission().isEmpty() || getPlayer().hasPermission(shopItem.getPermission())) {
-                if (iPlayer.isSelected(shopItem)) {
-                    itemStack.addLore(CoreLang.GUI_SHOP_SELECTED.getMessage(getPlayer())).glowing(true);
-                } else if (shopItem.isFree()) {
-                    itemStack.addLore(CoreLang.GUI_SHOP_CLICK_TO_SELECT.getMessage(getPlayer()));
-                    action = ShopAction.SELECT;
-                } else if (iPlayer.canUse(shopItem)) {
-                    itemStack.addLore(CoreLang.GUI_SHOP_LEFT_CLICK_SELECT.getMessage(getPlayer()));
-                    action = ShopAction.SELECT;
-                }
-            } else if (!getPlayer().hasPermission(shopItem.getPermission())){
-                itemStack.addLore(CoreLang.GUI_SHOP_CLICK_TO_SELECT.getMessage(getPlayer()));
+                itemStack.addLore(CoreLang.GUI_SHOP_NO_PERMISSION_STRING.replace(getPlayer()));
                 action = ShopAction.SELECT;
-            }*/
+            }
+
+
 
 
             ShopAction finalAction = action;
@@ -156,7 +123,8 @@ public class ShopMenu<ShopItemType extends ShopItem, PlayerType extends IPlayer>
                                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), shopItem.getCommand().replace("%player_name%", player.getName()));
                             }
                             if (shopItem.getMessage() != null){
-                                player.sendMessage(shopItem.getMessage());
+                                player.sendMessage(Utils.format(shopItem.getMessage()));
+                                refresh();
                             }
                             break;
                         } else {

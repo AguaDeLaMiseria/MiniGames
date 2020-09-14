@@ -29,7 +29,7 @@ public class NextEventPlaceholder implements PlaceHolder {
     @Override
     public String replace(AbstractArena arena) {
         return arena == null || arena.getPhase().getNextPhase() == null
-                || !(arena.getPhase().getNextPhase() instanceof SkyWarsPhase) ? "None" : ((SkyWarsPhase)
+                || !(arena.getPhase().getNextPhase() instanceof SkyWarsPhase) ? "Ninguno" : ((SkyWarsPhase)
                 arena.getPhase().getNextPhase()).getPhaseType().getConfigName()
                 .replace("null", "Ninguno")
                 .replace("Refill", "Rellenado")
