@@ -118,7 +118,7 @@ public class ShopMenu<ShopItemType extends ShopItem, PlayerType extends IPlayer>
                             ItemStackBuilder item2 = new ItemStackBuilder(itemStackShopItem);
                             shopFactory.createUsesShopMenu(player, item2, shopManager, shopItem);
                             refresh();
-                        } else if(clickType.name().contains("LEFT") && shopItem.isNegative() && !getPlayer().hasPermission(shopItem.getPermission())){
+                        } else if(shopItem.isNegative() && !getPlayer().hasPermission(shopItem.getPermission())){
                             if (shopItem.getCommand() != null){
                                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), shopItem.getCommand().replace("%player_name%", player.getName()));
                             }
