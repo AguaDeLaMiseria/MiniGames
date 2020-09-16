@@ -1,6 +1,7 @@
 package me.patothebest.gamecore.addon.addons;
 
 import com.google.inject.Inject;
+import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import me.patothebest.gamecore.arena.AbstractGameTeam;
 import me.patothebest.gamecore.combat.CombatDeathEvent;
@@ -12,6 +13,8 @@ import me.patothebest.gamecore.player.IPlayer;
 import me.patothebest.gamecore.player.PlayerManager;
 import me.patothebest.gamecore.util.Utils;
 import me.patothebest.gamecore.addon.Addon;
+import net.milkbowl.vault.chat.Chat;
+import net.milkbowl.vault.permission.Permission;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
@@ -28,9 +31,15 @@ public class CustomDeathMessagesAddon extends Addon {
     private final DeathMessagesFile config;
     private boolean setColor = false;
 
-    @Inject private CustomDeathMessagesAddon(PlayerManager playerManager, DeathMessagesFile config) {
+    // Vault objects
+    private final Provider<Permission> permissions;
+    private final Provider<Chat> chat;
+
+    @Inject private CustomDeathMessagesAddon(PlayerManager playerManager, DeathMessagesFile config, Provider<net.milkbowl.vault.permission.Permission> permissions, Provider<Chat> chat) {
         this.playerManager = playerManager;
         this.config = config;
+        this.permissions = permissions;
+        this.chat = chat;
     }
 
     @Override
@@ -74,11 +83,15 @@ public class CustomDeathMessagesAddon extends Addon {
                 setColorInternal = false;
             }
         }
-
+        String groupPlayer = (permissions.get() == null) ? "" : permissions.get().hasGroupSupport() ? permissions.get().getPrimaryGroup(event.getPlayer()) : "";
+        String groupPrefixPlayer = (chat.get() == null) ? "" : chat.get().getGroupPrefix(event.getPlayer().getWorld(), groupPlayer);
+        String groupSuffixPlayer = (chat.get() == null) ? "" : chat.get().getGroupSuffix(event.getPlayer().getWorld(), groupPlayer);
         deathMessage = deathMessage
                 .replace("%player%", (playerColor != null ? playerColor : "") + event.getPlayer().getName())
                 .replace("%player_display_name%", (playerColor != null ? playerColor : "") + event.getPlayer().getDisplayName())
-                .replace("%world", event.getPlayer().getWorld().getName());
+                .replace("%world", event.getPlayer().getWorld().getName())
+                .replace("%vault_prefix_player%", groupPrefixPlayer)
+                .replace("%vault_suffix_player%", groupSuffixPlayer);
 
         deathMessage = ChatColor.translateAlternateColorCodes('&', deathMessage);
 
@@ -106,12 +119,19 @@ public class CustomDeathMessagesAddon extends Addon {
                     killerTeamColor = Utils.getColorFromDye(gameTeam.getColor());
                 }
             }
+            String groupKiller = (permissions.get() == null) ? "" : permissions.get().hasGroupSupport() ? permissions.get().getPrimaryGroup(event.getKillerPlayer()) : "";
+            String groupPrefixKiller = (chat.get() == null) ? "" : chat.get().getGroupPrefix(killer.getWorld(), groupKiller);
+            String groupSuffixKiller = (chat.get() == null) ? "" : chat.get().getGroupSuffix(killer.getWorld(), groupKiller);
             deathMessage = deathMessage
                     .replace("%killer_display_name%", (killerTeamColor != null ? killerTeamColor : "") + (killer.getCustomName() == null ? killer.getName() : killer.getCustomName()))
                     .replace("%killer%", (killerTeamColor != null ? killerTeamColor : "") + killer.getName())
                     .replace("%mob_type%", (killerTeamColor != null ? killerTeamColor : "") + WordUtils.capitalizeFully(killer.getType().toString()))
                     .replace("%weapon_material%", materialName)
-                    .replace("%weapon%", itemDisplayName);
+                    .replace("%weapon%", itemDisplayName)
+                    .replace("%vault_prefix_killer%", groupPrefixKiller)
+                    .replace("%vault_suffix_killer%", groupSuffixKiller);
+
+            deathMessage = ChatColor.translateAlternateColorCodes('&', deathMessage);
         }
 
         event.setDeathMessage(deathMessage);
