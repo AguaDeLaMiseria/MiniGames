@@ -89,7 +89,7 @@ public class ShopMenu<ShopItemType extends ShopItem, PlayerType extends IPlayer>
                         action = ShopAction.BUY;
                     }
                 }
-            } else if (getPlayer().hasPermission(shopItem.getPermission())){
+            } else if (getPlayer().hasPermission(shopItem.getPermission()) || iPlayer.canUse(shopItem)){
                 if (iPlayer.isSelected(shopItem)) {
                     itemStack.addLore(CoreLang.GUI_SHOP_SELECTED.getMessage(getPlayer())).glowing(true);
                 } else {
@@ -118,7 +118,7 @@ public class ShopMenu<ShopItemType extends ShopItem, PlayerType extends IPlayer>
                             ItemStackBuilder item2 = new ItemStackBuilder(itemStackShopItem);
                             shopFactory.createUsesShopMenu(player, item2, shopManager, shopItem);
                             refresh();
-                        } else if(shopItem.isNegative() && !getPlayer().hasPermission(shopItem.getPermission())){
+                        } else if(shopItem.isNegative() && (!getPlayer().hasPermission(shopItem.getPermission()) && !iPlayer.canUse(shopItem))){
                             if (shopItem.getCommand() != null){
                                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), shopItem.getCommand().replace("%player_name%", player.getName()));
                             }

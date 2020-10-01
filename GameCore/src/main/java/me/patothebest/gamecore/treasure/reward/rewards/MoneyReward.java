@@ -45,7 +45,7 @@ public class MoneyReward extends Reward {
     @Override
     public RewardData give(IPlayer player) {
         int amount = Utils.randInt(minAmount, maxAmount);
-        if (player.giveMoney(amount)) {
+        if (!player.giveMoney(amount)) {
             System.err.println("No compatible economy plugin has been found!");
             return new RewardData("Error", new ItemStackBuilder(Material.BARRIER));
         }

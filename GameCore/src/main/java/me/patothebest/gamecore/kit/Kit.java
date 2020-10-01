@@ -368,7 +368,7 @@ public class Kit implements ConfigurationSerializable, GroupPermissible, Nameabl
                     }
                 }
 
-            } else if (permissionGroup.hasPermission(player) && !permissionGroup.getName().equalsIgnoreCase("default")){
+            } else if ((permissionGroup.hasPermission(player) && !permissionGroup.getName().equalsIgnoreCase("default")) || player.canUseKit(this)){
                 if (player.getKit() == this) {
                     itemStackBuilder.glowing(true);
                     itemStackBuilder.addLore(CoreLang.GUI_SHOP_SELECTED.getMessage(player));

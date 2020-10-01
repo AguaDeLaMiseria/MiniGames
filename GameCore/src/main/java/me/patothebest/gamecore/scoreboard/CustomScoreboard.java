@@ -27,7 +27,9 @@ public class CustomScoreboard extends WrappedBukkitRunnable {
         this.scoreboardEntryMap = new ConcurrentHashMap<>();
 
         final int[] size = {data.getConfigurationSection("content").getKeys(false).size()};
-        data.getConfigurationSection("content").getKeys(false).forEach(s -> scoreboardEntryMap.put(s, new ScoreboardEntry(this, player, playerScoreboard.getOrCreateTeam(size[0]--), data.getConfigurationSection("content." + s).getValues(true))));
+        data.getConfigurationSection("content").getKeys(false).
+                forEach(s -> scoreboardEntryMap.put
+                        (s, new ScoreboardEntry(this, player, playerScoreboard.getOrCreateTeam(size[0]--), data.getConfigurationSection("content." + s).getValues(true))));
         title = new ScoreboardEntry(this, player, playerScoreboard, data.getConfigurationSection("title").getValues(true));
         playerScoreboard.update();
 

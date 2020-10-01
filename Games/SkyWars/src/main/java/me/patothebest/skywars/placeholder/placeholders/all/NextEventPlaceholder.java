@@ -34,7 +34,7 @@ public class NextEventPlaceholder implements PlaceHolder {
                 .replace("null", "Ninguno")
                 .replace("Refill", "Rellenado")
                 .replace("Doom", "Muerte súbdita")
-                .replace("Border Shrink", "Reducción del borde")
+                .replace("Border Shrink", "Reducción")
                 .replace("End", "Final");
     }
 }

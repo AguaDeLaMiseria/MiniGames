@@ -10,6 +10,7 @@ import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -117,9 +118,9 @@ public class PlayerManager implements ListenerModule, ActivableModule {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerJoin(PlayerJoinEvent event) {
         players.get(event.getPlayer().getName()).joinPrepare();
-        if (!event.getPlayer().hasPermission("cubourbano.skywars.join")){
-            event.getPlayer().kickPlayer(Utils.format("&cDebes tener rango para ingresar! &aConsíguelo en &btienda.cubourbano.net"));
-        }
+        World world = Bukkit.getWorld("world");
+        world.setStorm(false);
+        world.setWeatherDuration(100000);
     }
 
     @EventHandler
