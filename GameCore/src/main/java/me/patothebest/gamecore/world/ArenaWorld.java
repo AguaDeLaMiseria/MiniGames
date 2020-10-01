@@ -188,8 +188,8 @@ public class ArenaWorld {
            world.setGameRuleValue("mobGriefing", "true");
            world.setGameRuleValue("doDaylightCycle", "false");
 
-           // difficulty hard
-           world.setDifficulty(Difficulty.HARD);
+           // difficulty normal
+           world.setDifficulty(Difficulty.NORMAL);
 
            // set the world spawn location
            world.setSpawnLocation(0, 101, 0);
