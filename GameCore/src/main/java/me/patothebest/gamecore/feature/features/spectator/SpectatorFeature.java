@@ -59,8 +59,8 @@ public class SpectatorFeature extends AbstractFeature {
     @EventHandler
     public void onPlayerStateChange(SpectateEvent event) {
         Player player = event.getPlayer();
-        player.getInventory().setItem(0, new ItemStackBuilder().material(Material.COMPASS).name(ChatColor.GREEN + "Spectate"));
-        player.getInventory().setItem(8, new ItemStackBuilder().material(Material.MAGMA_CREAM).name(ChatColor.RED + "Leave"));
+        player.getInventory().setItem(0, new ItemStackBuilder().material(Material.COMPASS).name(ChatColor.GREEN + "Escpectar"));
+        player.getInventory().setItem(8, new ItemStackBuilder().material(Material.MAGMA_CREAM).name(ChatColor.RED + "Salir"));
 
         pluginScheduler.runTaskLater(() -> {
             if(!player.isOnline()) {
